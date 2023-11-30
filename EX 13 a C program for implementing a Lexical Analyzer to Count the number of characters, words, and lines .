@@ -1,0 +1,43 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+int main() {
+  // Open the file to be scanned
+  FILE *fp = fopen("input.txt", "r");
+  if (fp == NULL) {
+    printf("Error opening file.\n");
+    return 1;
+  }
+
+  // Initialize the counters
+  int char_count = 0;
+  int word_count = 0;
+  int line_count = 0;
+
+  // Read each character from the file
+  char ch;
+  while ((ch = fgetc(fp)) != EOF) {
+    // Increment the character counter
+    char_count++;
+
+    // If the character is a space, increment the word counter
+    if (ch == ' ' || ch == '\t') {
+      word_count++;
+    }
+
+    // If the character is a newline, increment the line counter
+    if (ch == '\n') {
+      line_count++;
+    }
+  }
+
+  // Close the file
+  fclose(fp);
+
+  // Print the counts
+  printf("Number of characters: %d\n", char_count);
+  printf("Number of words: %d\n", word_count);
+  printf("Number of lines: %d\n", line_count);
+
+  return 0;
+}
